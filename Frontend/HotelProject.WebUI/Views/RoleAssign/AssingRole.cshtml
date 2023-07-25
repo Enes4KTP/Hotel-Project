@@ -1,0 +1,43 @@
+﻿@model List<HotelProject.WebUI.Models.Roles.RoleAssingViewModel>
+@{
+    ViewData["Title"] = "AssingRole";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+@if (ViewData["__ERROR__"] != null)
+{
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>@ViewData["__ERROR__"]</p>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<h1>Rol Atama Sayfası</h1>
+
+<form method="post">
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <div class="form-check">
+            <input type="hidden" asp-for="@Model[i].RoleID" >
+            <input type="hidden" asp-for="@Model[i].RoleName">
+            <input type="checkbox" asp-for="@Model[i].RoleExist" class="form-check-input">
+            <label class="form-check-label" for="@Model[i].RoleExist">@Model[i].RoleName</label>
+        </div>
+    }
+    <button class="btn btn-success">Kullanıcı için Rolleri Güncelle</button>
+</form>
+
